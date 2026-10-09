@@ -1,0 +1,263 @@
+:root {
+  --bg: #14110e;
+  --panel: #1f1a16;
+  --ink: #f4efe6;
+  --muted: #b7aa98;
+  --accent: #e7c27a;
+  --white-key: #f7f1e6;
+  --white-active: #ffe7a8;
+  --black-key: #1a1613;
+  --black-active: #c9a227;
+  --wood: linear-gradient(180deg, #3a2a1c, #23170f 40%, #1a120c);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #3a2c20, transparent),
+    var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.app {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-end;
+}
+
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-size: 12px;
+  margin: 0 0 8px;
+}
+
+h1 {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin: 0 0 8px;
+}
+
+.lede, .hint {
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 62ch;
+}
+
+.meter {
+  min-width: 180px;
+  background: var(--panel);
+  border: 1px solid #3d3228;
+  border-radius: 14px;
+  padding: 14px 16px;
+  text-align: right;
+}
+
+.meter span {
+  display: block;
+}
+
+#now-playing {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.3rem;
+}
+
+#octave-label {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  align-items: end;
+  margin: 28px 0 22px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.control input[type="range"] {
+  width: 180px;
+  accent-color: var(--accent);
+}
+
+.octave-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.octave-row button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  background: #3b2f25;
+  color: var(--ink);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.octave-row button:hover {
+  background: #524334;
+}
+
+.toggle {
+  flex-direction: row;
+  align-items: center;
+  height: 36px;
+}
+
+.board {
+  background: var(--wood);
+  border-radius: 18px;
+  padding: 22px 16px 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 0 auto 8px;
+}
+
+.comp-key {
+  width: 58px;
+  min-height: 58px;
+  border-radius: 10px;
+  border: 1px solid #2b241d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: #2a221c;
+  color: #efe6d6;
+  user-select: none;
+}
+
+.comp-key .letter {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.comp-key .note {
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.comp-key.spacer {
+  visibility: hidden;
+}
+
+.comp-key.blackish {
+  background: #12100e;
+  color: #f0e6d4;
+  width: 48px;
+  min-height: 42px;
+}
+
+.comp-key.active,
+.comp-key.blackish.active {
+  background: var(--black-active);
+  color: #1a140c;
+  transform: translateY(1px);
+}
+
+.comp-key.active .note,
+.comp-key.blackish.active .note {
+  color: #1a140c;
+}
+
+.piano-wrap {
+  margin-top: 22px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.piano {
+  position: relative;
+  height: 210px;
+  min-width: 980px;
+  background: #0e0c0a;
+  border-radius: 10px;
+  padding: 10px 8px 0;
+}
+
+.key {
+  position: absolute;
+  bottom: 10px;
+  border-radius: 0 0 8px 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.key.white {
+  background: linear-gradient(#fff, var(--white-key));
+  border: 1px solid #cfc3b0;
+  height: 190px;
+  z-index: 1;
+}
+
+.key.black {
+  background: linear-gradient(#3a332c, var(--black-key));
+  height: 118px;
+  z-index: 2;
+  border: 1px solid #000;
+}
+
+.key.white.active {
+  background: var(--white-active);
+}
+
+.key.black.active {
+  background: var(--black-active);
+}
+
+.key .label {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  color: #6d6254;
+}
+
+.key.black .label {
+  color: #efe4c8;
+}
+
+@media (max-width: 800px) {
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .comp-key {
+    width: 42px;
+    min-height: 48px;
+  }
+}

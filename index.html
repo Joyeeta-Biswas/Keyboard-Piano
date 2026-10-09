@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laptop Piano</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div>
+        <p class="eyebrow">Laptop Piano</p>
+        <h1>Play your keyboard like a piano</h1>
+        <p class="lede">
+          White keys sit on the home rows. Black keys sit on the row above, just like accidentals on a real piano. Hold several keys at once for chords.
+        </p>
+      </div>
+      <div class="meter" aria-live="polite">
+        <span id="now-playing">Ready</span>
+        <span id="octave-label">Middle C on Z</span>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Piano controls">
+      <label class="control">
+        Volume
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.32" />
+      </label>
+      <div class="control">
+        Octave
+        <div class="octave-row">
+          <button type="button" id="oct-down" aria-label="Octave down">−</button>
+          <strong id="oct-value">0</strong>
+          <button type="button" id="oct-up" aria-label="Octave up">+</button>
+        </div>
+      </div>
+      <label class="control toggle">
+        <input id="sustain" type="checkbox" />
+        Sustain (or hold Space)
+      </label>
+      <p class="hint">Click anywhere, then play. Left / Right arrows also shift octave.</p>
+    </section>
+
+    <section class="board" aria-label="Laptop key map">
+      <div class="row black-row" id="upper-black"></div>
+      <div class="row white-row" id="upper-white"></div>
+      <div class="row black-row" id="lower-black"></div>
+      <div class="row white-row" id="lower-white"></div>
+    </section>
+
+    <section class="piano-wrap" aria-label="Piano">
+      <div class="piano" id="piano"></div>
+    </section>
+  </div>
+  <script src="piano.js?v=3"></script>
+</body>
+</html>
